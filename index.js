@@ -38,9 +38,12 @@ client.on('message', (channel, tags, message, self) => {
   console.log(`${tags['display-name']}: ${message}`);
   if(message.toLowerCase().startsWith('!note')){
     const args = message.split(' ');
-    const xParam = cellMapping.get(args[1].toUpperCase());
-    const yParam = parseInt(args[2]) - 1;
-    clickPage(xParam, yParam);
+    if(args.length == 3){
+      const xParam = cellMapping.get(args[1].toUpperCase());
+      const yParam = parseInt(args[2]) - 1;
+      clickPage(xParam, yParam);
+    }
+    
   }
 });
 
@@ -56,13 +59,15 @@ function addLabels(){
 
   div = document.createElement("div");
   div.style.width = "700px";
-  div.style.height = "100px";
-  div.style.color = "red";
+  div.style.height = "50px";
+  div.style.color = "white";
+  div.style.backgroundColor = "red";
   div.style.position = "absolute";
-  div.style.left = "100px";
-  div.style.top = "30px";
+  div.style.left = "140px";
+  div.style.top = "10px";
   div.style.zIndex = -1;
   div.style.fontWeight = "600";
+  div.style.fontSize = "25px";
   div.innerHTML = "Command: !note [column letter] [row number] ex: !note A 1";
   document.body.appendChild(div);
 
